@@ -2,7 +2,8 @@
 /**
  * a Zone object, which represents a piece of land in the simulation grid. 
  * It can contain plants and animals. 
- * Zone contains a collection of Organisms. 
+ * Zone contains collections for Plant and Animal objects.
+ * Zone also has a collection for new animals that have just entered the zone. 
  * Zone contains methods for interaction with this collection
  * The contructor for Zone initializes the collections by creating and 
  * adding a randomized number of Plant and Animal Objects. 
@@ -18,6 +19,7 @@ public class Zone
 {
     private ArrayList<Plant> plants;
     private ArrayList<Animal> animals;
+    private ArrayList<Animal> newAnimals;
     private boolean fireStatus;
     private int zoneNumber;
     private int plantTotal;
