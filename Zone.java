@@ -1,25 +1,21 @@
 
 /**
- * a Zone object, which represents a piece of land in the simulation grid. 
- * It can contain plants and animals. 
- * Zone contains collections for Plant and Animal objects.
- * Zone also has a collection for new animals that have just entered the zone. 
- * Zone contains methods for interaction with this collection
- * The contructor for Zone initializes the collections by creating and 
- * adding a randomized number of Plant and Animal Objects. 
+ * A Zone object, which represents a piece of land in the simulation grid. 
+ * Zone stores information about its self such as how many Organism objects are in it. 
+ * It contains methods for adding and removing Organism objects. 
  * 
- * Zone also keeps track of its disaster state and has methods to access and mutate this information
+ * Zone conatins a list of all organisms currently in the zone. 
  * 
- * Zone also knows which Zone it is in the simulation (0 - 143)
+ * Zone also keeps track of its disaster state and has methods to access and mutate this information.
+ * 
+ * Zone keeps a record of which Zone it is in the simulation (0 - 143).
  * 
  * @author James Marshall
  * @version 0.0
  */
-public class Zone
+public class Zone 
 {
-    private ArrayList<Plant> plants;
-    private ArrayList<Animal> animals;
-    private ArrayList<Animal> newAnimals;
+    private ArrayList<Organism> organisms;
     private boolean fireStatus;
     private int zoneNumber;
     private int plantTotal;
@@ -27,10 +23,9 @@ public class Zone
     private int treeTotal;
     private int deerTotal;
     /**
-     * Initialize ArrayLists with starting number of plants and animals.
-     * fireStatus set to false.
+     * Initialize zone with a zone number and set the fire status to false. 
      * 
-     * @param zoneNumber
+     * @param an int representing the zone's number within the grid
      */
     public Zone(int zoneNumber)
     {
@@ -39,6 +34,8 @@ public class Zone
     
     /**
      * Set the fire status.
+     * 
+     * @param - a boolean for fire status
      */
     public void setFireStatus(boolean fireStatus)
     {
@@ -46,7 +43,18 @@ public class Zone
     }
 
     /**
-     * Returns the zoneNumber 
+     * Returns the fire status.
+     * 
+     * @return - a boolean indicating if the zone is on fire. 
+     */
+    public boolean getFireStatus()
+    {
+    }
+    
+    /**
+     * Returns the zoneNumber
+     * 
+     *@return - an integer value represting the zone's number within the grid.
      */
     public int getZoneNumber()
     {
@@ -54,45 +62,29 @@ public class Zone
     }
     
     /**
-     * Add a Plant to the list. 
-     * if the list already contains 10 objects, 
-     * the Plant can take the place of a null reference.
-     * If no null, if the Plant is type Tree, it can replace type Grass.
+     * Add an Organism to the list. 
+     * 
+     * If there are already than 10 Tree or Grass objects in the zone -
+     * Does not allow grass to be added. 
+     * Will add a tree only if it can take the place of a grass object.
+     * Grass object is removed and set to dead.
+     * 
+     * returns False if the addition was not allowed. 
+     * 
+     * @param An Organism object to be added to the zone
+     * @return a boolean indcating if the opperation was successful or not. 
      */
-    public void addPlant(Plant plant)
+    public boolean addOrgansim(Organism organism)
     {
-        
     }
     
     /**
-     * Add an Animal to the list.
+     * Remove a given organism from the Zone.
+     * 
+     * @param an Organism object to be removed from the zone.
      */
-    public void addAimal(Animal animal)
+    public void removeOrganism(Organism organism)
     {
+    }
         
     }
-    
-    /**
-     * Replace Plant reference in plants with null.
-     */
-    public void removePlant(Plant plant)
-    {
-        
-    }
-    
-    /**
-     * Remove Animal from the animals. 
-     */
-    public void removeAnimal(Animal animal)
-    {
-        
-    }
-    
-    /**
-     * Check to see if there is any grass in this zone, returns how much grass.
-     */
-    public int hasGrass()
-    {
-        
-    }
-}
