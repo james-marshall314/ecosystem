@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class Animal here.
+ * Write a description of class Deer here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Animal extends Organism
+public class Deer extends Organism
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Animal
+     * Constructor for objects of class Deer
      */
-    public Animal()
+    public Deer()
     {
         // initialise instance variables
         x = 0;

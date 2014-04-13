@@ -1,13 +1,10 @@
-
+import java.util.ArrayList;
 /**
  * Simulator creates an runs a simulation of an ecosystem. 
- * The ecosystem is comprised of a grid of zones, which can be populated 
- * by plant and animal life. 
- *
- * Holds an ArrayList of Zone.
+ * The ecosystem is comprised of a list of zones and a list of organisms.
  * 
  * Simulator builds and executes the simulation.
- * Tracks number of turns that have ran.
+ * Tracks number of turns that have been taken.
  * 
  * @author James Marshall
  * @version 0.0
@@ -15,6 +12,7 @@
 public class Simulator
 {
     private ArrayList<Zone> gameGrid;
+    private ArrayList<Organism> organisms;
     private int turns;
 
     /**
@@ -46,7 +44,7 @@ public class Simulator
     /**
      * Returns a list of adjacent zones based on a given zone number.
      */
-    public ArrayList<zone> getAdjZones(int zoneNumber)
+    public ArrayList<Zone> getAdjZones(int zoneNumber)
     {
         
     }

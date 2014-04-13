@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * A Zone object, which represents a piece of land in the simulation grid. 
  * Zone stores information about its self such as how many Organism objects are in it. 
@@ -18,7 +18,6 @@ public class Zone
     private ArrayList<Organism> organisms;
     private boolean fireStatus;
     private int zoneNumber;
-    private int plantTotal;
     private int grassTotal;
     private int treeTotal;
     private int deerTotal;
@@ -67,7 +66,9 @@ public class Zone
      * If there are already than 10 Tree or Grass objects in the zone -
      * Does not allow grass to be added. 
      * Will add a tree only if it can take the place of a grass object.
-     * Grass object is removed and set to dead.
+     * Grass object is set to dead.
+     * 
+     * if the addition is allowed, the organism totals are updated. 
      * 
      * returns False if the addition was not allowed. 
      * 
@@ -86,5 +87,12 @@ public class Zone
     public void removeOrganism(Organism organism)
     {
     }
-        
+    
+    /**
+     * Update the current organism totals. 
+     */
+    private void updateTotals()
+    {
+    }
+    
     }
