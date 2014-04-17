@@ -12,18 +12,21 @@ import java.util.ArrayList;
 public class Organism
 {
     private boolean isAlive;
-    //the the simulator object that uses this organism. 
-    private Simulator simulator;
-    //the zone the object is in.
-    private Zone currentZone;
-    //a list to temoporarly hold offspring that may be created during a turn of the sim.
+    //zone
+    private Zone myZone;
+    //the location within the zone
+    private Location myLoc;
+    //a list to temporarly hold offspring that may be created during a turn of the sim.
     private ArrayList<Organism> offspring;
 
     /**
      * Constructor for objects of class Organism
      */
-    public Organism(Simulator simulator)
+    public Organism(Zone myZone, Location myLocation)
     {
+        isAlive=true;
+        this.Zone=Zone;
+        this.Location=Location;
     }
 
     /**
@@ -31,7 +34,8 @@ public class Organism
      *@return A boolean, true if alive. 
      */
     public boolean isAlive()
-    {
+    { 
+        return isAlive;
     }
     
     /**
@@ -41,6 +45,7 @@ public class Organism
      */
     public void kill()
     {
+        
     }
     
     /**
