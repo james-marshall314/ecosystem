@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Deer here.
  * 
@@ -8,26 +7,24 @@
 public class Deer extends Organism
 {
     // instance variables - replace the example below with your own
-    private int x;
 
     /**
      * Constructor for objects of class Deer
      */
-    public Deer()
+    public Deer(Zone myZone, Location myLoc)
     {
-        // initialise instance variables
-        x = 0;
+        super (myZone, myLoc);
+        
+        
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Deer moves
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @return     new Zone
      */
-    public int sampleMethod(int y)
+    public void setZone(Zone newZone)
     {
-        // put your code here
-        return x + y;
+        myZone=newZone;
     }
 }

@@ -11,14 +11,16 @@ import java.util.ArrayList;
  * Zone keeps a record of which Zone it is in the simulation (0 - 143).
  * 
  * @author James Marshall
- * @version 0.0
+ * @version 0.1
  */
 public class Zone 
 {
     private ArrayList<Organism> organisms;
     private boolean fireStatus;
-    private int zoneNumber;
+    private int x;
+    private int y;
     private int grassTotal;
+    private int plantTotal;
     private int treeTotal;
     private int deerTotal;
     /**
@@ -26,9 +28,16 @@ public class Zone
      * 
      * @param an int representing the zone's number within the grid
      */
-    public Zone(int zoneNumber)
+    public Zone(int x, int y)
     {
-       
+       organisms = new ArrayList<organism>();
+       grassTotal = 0;
+       treeTotal = 0;
+       plantTotal = 0;
+       deerTotal = 0;
+       fireStatus = false;
+       this.x=x;
+       this.y=y;
     }
     
     /**
@@ -38,7 +47,7 @@ public class Zone
      */
     public void setFireStatus(boolean fireStatus)
     {
-        
+        this.fireStatus = fireStatus;
     }
 
     /**
@@ -48,6 +57,7 @@ public class Zone
      */
     public boolean getFireStatus()
     {
+        return fireStatus;
     }
     
     /**
@@ -57,13 +67,13 @@ public class Zone
      */
     public int getZoneNumber()
     {
-        
+        return zoneNumber;
     }
     
     /**
      * Add an Organism to the list. 
      * 
-     * If there are already than 10 Tree or Grass objects in the zone -
+     * If there are already 10 Tree or Grass objects in the zone -
      * Does not allow grass to be added. 
      * Will add a tree only if it can take the place of a grass object.
      * Grass object is set to dead.
@@ -77,6 +87,30 @@ public class Zone
      */
     public boolean addOrgansim(Organism organism)
     {
+        this.updateTotals();
+        if (organism instanceof Grass) {
+            if (plantTotal < 10) {
+                organisms.add(organism);
+            }
+        }
+        if (organism instanceof Tree) {
+            if (plantTotal < 10) {
+                organisms.add(organism);
+            }
+            else if (grassTotal > 0) {
+                this.killGrass();
+                organisms.add(organism);
+            }
+        }
+        if (organism instanceof Deer) {
+            organisms.add(organism);
+        }
+    }
+    /**
+     * Remove and kill a grass organism.
+     */
+    private void killGrass()
+    {
     }
     
     /**
@@ -86,6 +120,7 @@ public class Zone
      */
     public void removeOrganism(Organism organism)
     {
+        organisms.remove(organism);
     }
     
     /**
@@ -94,5 +129,12 @@ public class Zone
     private void updateTotals()
     {
     }
+    
+    public int getX()
+    { return x; }
+    
+    public int getY()
+    {  return y;}   
+    
     
     }
