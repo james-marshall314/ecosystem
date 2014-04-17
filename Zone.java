@@ -17,7 +17,8 @@ public class Zone
 {
     private ArrayList<Organism> organisms;
     private boolean fireStatus;
-    private int zoneNumber;
+    private int x;
+    private int y;
     private int grassTotal;
     private int treeTotal;
     private int deerTotal;
@@ -26,9 +27,10 @@ public class Zone
      * 
      * @param an int representing the zone's number within the grid
      */
-    public Zone(int zoneNumber)
+    public Zone(x, y)
     {
-       
+       this.x=x;
+       this.y=y;
     }
     
     /**
@@ -94,5 +96,12 @@ public class Zone
     private void updateTotals()
     {
     }
+    
+    public int getX()
+    { return x; }
+    
+    public int getY()
+    {  return y;}   
+    
     
     }
