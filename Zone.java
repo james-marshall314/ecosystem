@@ -61,13 +61,23 @@ public class Zone
     }
     
     /**
-     * Returns the zoneNumber
+     * Returns zone's x coord
      * 
-     *@return - an integer value represting the zone's number within the grid.
+     *@return - integer value representing the Zone's x coord.
      */
-    public int getZoneNumber()
+    public int getCoordX()
     {
-        return zoneNumber;
+        return x;
+    }
+    
+        /**
+     * Returns zone's y coord
+     * 
+     *@return - integer value representing the Zone's y coord.
+     */
+    public int getCoordY()
+    {
+        return y;
     }
     
     /**
