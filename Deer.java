@@ -24,6 +24,7 @@ public class Deer extends Organism
      * @return     new Zone
      */
     public void setZone(Zone newZone)
+
     {
         myZone=newZone;
     }
