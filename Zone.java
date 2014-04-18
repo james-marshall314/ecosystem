@@ -105,13 +105,26 @@ public class Zone
         if (organism instanceof Deer) {
             organisms.add(organism);
         }
+        this.updateTotals();
     }
+    
     /**
      * Remove and kill a grass organism.
      */
     private void killGrass()
     {
+        int x=0;
+        for (Organism grass : organisms) {
+            if (x = 0) {
+                if (grass instanceof Grass) {
+                    iterator.remove(grass);
+                    grass.kill();
+                    x++;
+                }
+            }
+        }
     }
+    
     
     /**
      * Remove a given organism from the Zone.
@@ -121,6 +134,7 @@ public class Zone
     public void removeOrganism(Organism organism)
     {
         organisms.remove(organism);
+        this.updateTotals();
     }
     
     /**
@@ -128,7 +142,23 @@ public class Zone
      */
     private void updateTotals()
     {
+        grassTotal=0;
+        treeTotal=0;
+        deerTotal=0;
+        for (Organism org : organisms) {
+            if (org instanceof Grass) {
+                grassTotal++;
+            }
+            if (org instanceof Tree) {
+                treeTotal++;
+            }
+            if (org instanceof Deer) {
+                deerTotal++;
+            }
+        }
+        plantTotal=grassTotal+treeTotal;
     }
+        
     
     public int getX()
     { return x; }
