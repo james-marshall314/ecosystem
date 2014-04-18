@@ -70,7 +70,7 @@ public class Zone
         return x;
     }
     
-        /**
+    /**
      * Returns zone's y coord
      * 
      *@return - integer value representing the Zone's y coord.
@@ -124,10 +124,12 @@ public class Zone
     private void killGrass()
     {
         int x=0;
-        for (Organism grass : organisms) {
+        Iterator itr = organisms.iterator();
+        while(itr.hasNext()) {
+            Organism org = itr.next();
             if (x = 0) {
-                if (grass instanceof Grass) {
-                    iterator.remove(grass);
+                if (org instanceof Grass) {
+                    itr.remove(grass);
                     grass.kill();
                     x++;
                 }
