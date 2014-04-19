@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Grass here.
+ * A Grass Organism.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author J. Marshall
+ * @version 0.0
  */
 public class Grass extends Organism
 {

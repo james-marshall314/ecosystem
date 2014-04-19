@@ -1,12 +1,14 @@
 /**
- * Write a description of class Deer here.
+ * A Deer Organism.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author J. Marshall, S. Nikolsky
+ * @version 0.0
  */
 public class Deer extends Organism
 {
-    // instance variables - replace the example below with your own
+    private int health;
+    private int age;
+    private int reproAge;
 
     /**
      * Constructor for objects of class Deer
@@ -14,10 +16,34 @@ public class Deer extends Organism
     public Deer(Zone myZone, Location myLoc)
     {
         super (myZone, myLoc);
-        
-        
+        health = 8;
+        age = 0;
+        reproAge = 4;
     }
-
+    
+    /**
+     * Set the age of the deer.
+     */
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+    
+    /**
+     * Check if deer can reproduce.
+     * 
+     * @return  boolean true if deer can reproduce.
+     */
+    public boolean canRepro()
+    {
+        if (age >= reproAge && health == 8) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
     /**
      * Deer moves
      * 
