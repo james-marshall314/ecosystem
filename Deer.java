@@ -13,9 +13,9 @@ public class Deer extends Organism
     /**
      * Constructor for objects of class Deer
      */
-    public Deer(Zone myZone, Location myLoc)
+    public Deer(Zone myZone)
     {
-        super (myZone, myLoc);
+        super (myZone);
         health = 8;
         age = 0;
         reproAge = 4;
@@ -47,7 +47,7 @@ public class Deer extends Organism
     /**
      * Deer moves
      * 
-     * @return     new Zone
+     * @return  new Zone
      */
     public void setZone(Zone newZone)
 

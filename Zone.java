@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * A Zone object, which represents a piece of land in the simulation grid. 
  * Zone stores information about its self such as how many Organism objects are in it. 
@@ -30,7 +31,7 @@ public class Zone
      */
     public Zone(int x, int y)
     {
-       organisms = new ArrayList<organism>();
+       organisms = new ArrayList<Organism>();
        grassTotal = 0;
        treeTotal = 0;
        plantTotal = 0;
@@ -98,24 +99,29 @@ public class Zone
     public boolean addOrgansim(Organism organism)
     {
         this.updateTotals();
+        boolean addSuccessful = false;
         if (organism instanceof Grass) {
             if (plantTotal < 10) {
                 organisms.add(organism);
+                addSuccessful = true;
             }
         }
         if (organism instanceof Tree) {
             if (plantTotal < 10) {
                 organisms.add(organism);
+                addSuccessful = true;
             }
             else if (grassTotal > 0) {
                 this.killGrass();
                 organisms.add(organism);
+                addSuccessful = true;
             }
         }
         if (organism instanceof Deer) {
             organisms.add(organism);
         }
         this.updateTotals();
+        return addSuccessful;
     }
     
     /**
@@ -124,13 +130,13 @@ public class Zone
     private void killGrass()
     {
         int x=0;
-        Iterator itr = organisms.iterator();
+        Iterator<Organism> itr = organisms.iterator();
         while(itr.hasNext()) {
             Organism org = itr.next();
-            if (x = 0) {
+            if (x == 0) {
                 if (org instanceof Grass) {
-                    itr.remove(grass);
-                    grass.kill();
+                    itr.remove();
+                    org.kill();
                     x++;
                 }
             }

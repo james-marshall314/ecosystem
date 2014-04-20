@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=myZone
+comment0.target=Organism(Zone)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Organism\n
+comment1.params=
+comment1.target=boolean\ isAlive()
+comment1.text=\nCheck\ if\ this\ organism\ is\ alive.\n@return\ A\ boolean,\ true\ if\ alive.\ \n
+comment2.params=
+comment2.target=void\ kill()
+comment2.text=\n\ Kill\ this\ organism.\n\ organism\ removes\ its\ self\ from\ its\ current\ zone.\n\ isAlive\ set\ false.\n
+comment3.params=
+comment3.target=java.util.ArrayList\ getOffspring()
+comment3.text=\n\ Get\ a\ list\ of\ offspring.\n
+comment4.params=
+comment4.target=void\ clearOffspring()
+comment4.text=\n\ Clear\ the\ list\ of\ offspring.\n
+numComments=5

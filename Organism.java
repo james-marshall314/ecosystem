@@ -13,20 +13,18 @@ public class Organism
 {
     private boolean isAlive;
     //zone
-    private Zone myZone;
-    //the location within the zone
-    private Location myLoc;
+    protected Zone myZone;
     //a list to temporarly hold offspring that may be created during a turn of the sim.
     private ArrayList<Organism> offspring;
 
     /**
      * Constructor for objects of class Organism
      */
-    public Organism(Zone myZone, Location myLocation)
+    public Organism(Zone myZone)
     {
-        isAlive=true;
-        this.Zone=Zone;
-        this.Location=Location;
+        isAlive = true;
+        this.myZone = myZone;
+        offspring = new ArrayList<Organism>();
     }
 
     /**
@@ -53,6 +51,7 @@ public class Organism
      */
     public ArrayList<Organism> getOffspring()
     {
+        return offspring;
     }
     
     /**

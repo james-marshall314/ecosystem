@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=myZone
+comment0.target=Deer(Zone)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Deer\n
+comment1.params=age
+comment1.target=void\ setAge(int)
+comment1.text=\n\ Set\ the\ age\ of\ the\ deer.\n
+comment2.params=
+comment2.target=boolean\ canRepro()
+comment2.text=\n\ Check\ if\ deer\ can\ reproduce.\n\ \n\ @return\ \ boolean\ true\ if\ deer\ can\ reproduce.\n
+comment3.params=newZone
+comment3.target=void\ setZone(Zone)
+comment3.text=\n\ Deer\ moves\n\ \n\ @return\ \ new\ Zone\n
+numComments=4

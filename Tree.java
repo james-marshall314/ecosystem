@@ -2,8 +2,8 @@
 /**
  * Write a description of class Tree here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author J. Marshall
+ * @version 0.0
  */
 public class Tree extends Organism
 {
@@ -13,10 +13,9 @@ public class Tree extends Organism
     /**
      * Constructor for objects of class Tree
      */
-    public Tree()
+    public Tree(Zone myZone)
     {
-        // initialise instance variables
-        x = 0;
+        super (myZone);
     }
 
     /**

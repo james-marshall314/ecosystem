@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=myZone
+comment0.target=Grass(Zone)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Grass\n
+comment1.params=reproCount
+comment1.target=void\ setReproCount(int)
+comment1.text=\n\ Set\ the\ reproduction\ count.\n
+numComments=2
