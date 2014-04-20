@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=myFrame
+comment0.target=void\ SimDisplay(javax.swing.JFrame)
+comment0.text=\n\ Create\ a\ new,\ empty\ SimDisplay\n
+comment1.params=gameGrid
+comment1.target=void\ showSim(java.util.HashMap)
+comment1.text=\n\ Display\ current\ state\ of\ grid.\n\ @param\:\ \ gameGrid\ (which\ is\ a\ HashMap<String,\ Zone>)\n
+comment2.params=
+comment2.target=void\ clearSim()
+comment2.text=\n\ Clear\ the\ image\ on\ this\ panel.\n
+comment3.params=
+comment3.target=java.awt.Dimension\ getPreferredSize()
+comment3.text=\n\ Tell\ the\ layout\ manager\ how\ big\ we\ would\ like\ to\ be.\n\ (This\ method\ gets\ called\ by\ layout\ managers\ for\ placing\n\ the\ components.)\n\ \n\ @return\ The\ preferred\ dimension\ for\ this\ component.\n
+comment4.params=myZone
+comment4.target=void\ showZone(Zone)
+comment4.text=\n\ This\ component\ needs\ to\ be\ redisplayed.\ Copy\ the\ internal\ image\ \n\ to\ screen.\ (This\ method\ gets\ called\ by\ the\ Swing\ screen\ painter\ \n\ every\ time\ it\ want\ this\ component\ displayed.)\n\ \n\ @param\ g\ The\ graphics\ context\ that\ can\ be\ used\ to\ draw\ on\ this\ component.\n
+numComments=5
