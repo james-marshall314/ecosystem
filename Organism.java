@@ -14,6 +14,8 @@ public class Organism
     private boolean isAlive;
     //zone
     protected Zone myZone;
+    //a location within a zone.
+    private Location myLoc;
     //a list to temporarly hold offspring that may be created during a turn of the sim.
     private ArrayList<Organism> offspring;
 
@@ -44,6 +46,14 @@ public class Organism
     public void kill()
     {
         
+    }
+    
+    /**
+     * Set the location of the object.
+     */
+    public void setLoc(Location loc)
+    {
+        myLoc = loc;
     }
     
     /**

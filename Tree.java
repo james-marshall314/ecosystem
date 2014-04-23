@@ -7,26 +7,29 @@
  */
 public class Tree extends Organism
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    // The rate of reproduction.
+    private int reproRate;
+    // Turns since last repro.
+    private int reproCount;
+    // % chance of death if there is a fire.
+    private int burnChance; 
 
     /**
-     * Constructor for objects of class Tree
+     * Constructor for objects of class tree
      */
     public Tree(Zone myZone)
     {
-        super (myZone);
+       super (myZone);
+       reproRate = 5;
+       reproCount = 0;
+       burnChance = 75;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Set the reproduction count.
      */
-    public int sampleMethod(int y)
+    public void setReproCount(int reproCount)
     {
-        // put your code here
-        return x + y;
+        this.reproCount = reproCount;
     }
 }

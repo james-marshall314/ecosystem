@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=x\ y
+comment0.target=Location(int,\ int)
+comment0.text=\n\ Init\ coords,\ set\ location\ to\ empty\n
+comment1.params=org
+comment1.target=void\ add(Organism)
+comment1.text=\n\ Add\ an\ organism\ to\ this\ location.\n
+comment2.params=org
+comment2.target=void\ clear(Organism)
+comment2.text=\n\ Clear\ the\ location\ of\ given\ organism.\n
+comment3.params=
+comment3.target=boolean\ isFull()
+comment3.text=\n\ @Check\ if\ the\ location\ is\ full\n\ (location\ is\ full\ if\ there\ is\ already\ a\ plant\ object)\n
+comment4.params=
+comment4.target=int\ getCoordX()
+comment4.text=\n@return\ the\ X\ coord\ of\ this\ location.\ \n
+comment5.params=
+comment5.target=int\ getCoordY()
+comment5.text=\n@return\ the\ Y\ coord\ of\ this\ location.\ \n
+numComments=6

@@ -16,22 +16,44 @@ import java.util.Iterator;
  */
 public class Zone 
 {
+    // A list of organisms within this zone
     private ArrayList<Organism> organisms;
-    private boolean fireStatus;
+    
+    // Grid of locations within the zone. 
+    private ArrayList<Location> locGrid;
+    
+    // The coordinates of this zone within the gamegrid. 
     private int x;
     private int y;
+    
+    // The totals of organisms in the zone - plant total is grass + trees.
     private int grassTotal;
     private int plantTotal;
     private int treeTotal;
     private int deerTotal;
+    
+    // Is the zone on fire? 
+    private boolean fireStatus;
+    
     /**
-     * Initialize zone with a zone number and set the fire status to false. 
+     * Initialize zone with a with its grid cooridnates and set the fire status to false. 
      * 
      * @param an int representing the zone's number within the grid
      */
     public Zone(int x, int y)
     {
        organisms = new ArrayList<Organism>();
+       //create a 4 by 4 location grid. 
+       locGrid = new ArrayList<Location>();
+       for (int i=0; i<4; ++i)
+        {
+            for (int j=0; j<4; ++j)
+            {
+                Location loc = new Location(i,j);
+                locGrid.add(loc);
+            }
+        }
+       
        grassTotal = 0;
        treeTotal = 0;
        plantTotal = 0;
@@ -143,6 +165,12 @@ public class Zone
         }
     }
     
+    /**
+     * Assign an organism a location within the zone. 
+     */
+    private void setLocation(Organism org)
+    {
+    }
     
     /**
      * Remove a given organism from the Zone.
