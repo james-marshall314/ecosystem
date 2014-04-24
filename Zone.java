@@ -118,7 +118,7 @@ public class Zone
      * @param An Organism object to be added to the zone
      * @return a boolean indcating if the opperation was successful or not. 
      */
-    public boolean addOrgansim(Organism organism)
+    public boolean addOrg(Organism organism)
     {
         this.updateTotals();
         boolean addSuccessful = false;
@@ -152,7 +152,7 @@ public class Zone
     /**
      * Remove and kill a grass organism.
      */
-    private void killGrass()
+    public void killGrass()
     {
         int x=0;
         Iterator<Organism> itr = organisms.iterator();
@@ -229,8 +229,6 @@ public class Zone
      * Remove a given organism from the Zone.
      * 
      * @param an Organism object to be removed from the zone.
-     * 
-     * This should also clear the organisms location, it does not yet. 
      */
     public void removeOrg(Organism org)
     {
@@ -269,5 +267,35 @@ public class Zone
     public int getY()
     {  return y;}   
     
-    
+    /**
+     * @reutrn a boolean stating if this zone is at max plant total
+     */
+    public boolean plantFull()
+    {
+        if (plantTotal == 10) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+    
+    /**
+     * @return a boolean stating if this zone ia at max tree total
+     */
+    public boolean treeFull()
+    {
+        if (treeTotal == 10) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public int grassTotal() 
+    {
+        return grassTotal();
+    }
+
+}

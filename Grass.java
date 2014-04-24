@@ -31,4 +31,26 @@ public class Grass extends Organism
         this.reproCount = reproCount;
     }
     
+    /**
+     * Advance the repro count by 1
+     */
+    public void advCount()
+    {
+        reproCount++;
+    }
+
+    
+    /**
+     * check if grass can reproduce. 
+     */
+    public boolean canRepro()
+    {
+        if (reproCount >= reproRate) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
 }

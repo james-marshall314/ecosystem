@@ -66,10 +66,28 @@ public class Organism
     }
     
     /**
+     * Add offspring
+     * 
+     * @param an organism reprsenting this organisms offspring
+     */
+    public void addOffspring(Organism org)
+    {
+        offspring.add(org);
+    }
+    
+    /**
      * Clear the list of offspring.
      */
     public void clearOffspring()
     {
         offspring.clear();
+    }
+    
+    /**
+     * @return this organisms zone.
+     */
+    public Zone getZone()
+    {
+        return myZone;
     }
 }

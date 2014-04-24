@@ -22,11 +22,45 @@ public class Deer extends Organism
     }
     
     /**
+     * Get the health level of this deer
+     * 
+     * @return an int representing the health of this deer
+     */
+    public int getHealth()
+    {
+        return health;
+    }
+    
+    /**
+     * Health + 1
+     */
+    public void healthPlus()
+    {
+        health++;
+    }
+    
+    /**
+     * Health 1 1
+     */
+    public void healthMinus()
+    {
+        health--;
+    }
+    
+    /**
      * Set the age of the deer.
      */
     public void setAge(int age)
     {
         this.age = age;
+    }
+    
+    /**
+     * Age +1
+     */
+    public void agePlus()
+    {
+        age++;
     }
     
     /**
@@ -47,11 +81,14 @@ public class Deer extends Organism
     /**
      * Deer moves
      * 
-     * @return  new Zone
+     * @param a new zone to move to.
      */
-    public void setZone(Zone newZone)
+    public void move(Zone newZone)
 
     {
+        myZone.removeOrg(this);
+        newZone.addOrg(this);
         myZone=newZone;
+        
     }
 }
