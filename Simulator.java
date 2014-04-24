@@ -95,6 +95,8 @@ public class Simulator
      */
     private void runSim()
     {
+        //Clear out any dead organisms
+        this.clearDead();
         //All Grass take turn
         for (Organism org : organisms) {
             if (org instanceof Grass) {
@@ -118,6 +120,8 @@ public class Simulator
             organisms.addAll(org.getOffspring());
             org.clearOffspring();
         }
+        //fire turn
+        this.fireTurn();
         //Advance turns
         turns++;
     }
@@ -218,6 +222,110 @@ public class Simulator
             }
         }
         
+    }
+    
+    /**
+     * A fire turn. sets fires, selects organisms to be killed, extinguishes fires. 
+     */
+    private void fireTurn()
+    {
+        this.setFire();
+        for (Organism org : organisms) {
+            if (org instanceof Tree || org instanceof Grass) {
+                if (this.didBurn(org) == true) {
+                    org.kill();
+                }
+            }
+        }
+        this.fireOut();
+    }
+    
+    /**
+     * Randomly set fire to zones. 
+     */
+    private void setFire()
+    {
+        ArrayList<Zone> zones = gameGrid.getZones();
+        for (Zone zone : zones) {
+            if (this.isFire() == true) {
+                zone.setFireStatus(true);
+            }
+        }
+    }
+    
+    /**
+     * Extinguish all fires.
+     */
+    private void fireOut()
+    {
+        ArrayList<Zone> zones = gameGrid.getZones();
+        for (Zone zone : zones) {
+            zone.setFireStatus(false);
+        }
+    }
+    
+    /**
+     * Will there be a fire?
+     * 
+     * @return a boolean, true if there is a fire, false if not. 
+     */
+    private boolean isFire()
+    {
+        // % chance of a fire
+        int fireChance = 10;
+        //random number, 0 - 99
+        int rand = random.nextInt(100);
+        if (rand < fireChance) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    /**
+     * Does an organism die if there is a fire? 
+     * 
+     * @return true if killed.
+     */
+    private boolean didBurn(Organism org)
+    {
+        int burnChance;
+        int rand = random.nextInt(100);
+        boolean didBurn = false;
+        if (org instanceof Grass) {
+            burnChance = 75;
+            if (rand < burnChance) {
+                didBurn = true;
+            }
+            else {
+                didBurn = false;
+            }
+        }
+        if (org instanceof Tree) {
+            burnChance = 60;
+            if (rand < burnChance) {
+                didBurn = true;
+            }
+            else {
+                didBurn = false;
+            }
+        }
+        return didBurn;
+    }
+    
+    /**
+     * Clear out the dead.
+     */
+    private void clearDead()
+    {
+        Iterator<Organism> itr = organisms.iterator();
+        while(itr.hasNext()) {
+            Organism org = itr.next();
+            if (org.isAlive() == false) {
+                itr.remove();
+            }
+        }
     }
     
     /**
