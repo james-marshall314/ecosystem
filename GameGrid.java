@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
- * A grid of Zone objects that makes up the 
+ * A grid of Zone objects that makes up the gameGrid
  * 
  * @author J. Marshall, S. Nikolsky
  * @version
@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class GameGrid
 {
     private HashMap<String, Zone> gameGrid;
+    private ArrayList<Zone> zones;
 
     /**
      * Constructor for objects of class GameGrid
@@ -20,15 +21,26 @@ public class GameGrid
     public GameGrid()
     { 
         Zone tempZone;
+        gameGrid = new HashMap<String, Zone>();
+        zones = new ArrayList<Zone>();
         for (int i=0; i<12; ++i)
         {
             for (int j=0; j<12; ++j)
             {
                 tempZone=new Zone (i, j);
                 gameGrid.put(Integer.toString(i)+","+Integer.toString(j), tempZone);
+                zones.add(tempZone);
             }
         }
         
+    }
+    
+    /**
+     * @return a list of all the Zones in the HashMap
+     */
+    public ArrayList<Zone> getZones()
+    {
+        return zones;
     }
     
     /**

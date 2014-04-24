@@ -34,19 +34,60 @@ public class Simulator
     }
     
     /**
-     * Creates game display 
+     * Populate the Grid.
+     * 
+     * @params ints representing number of grass, tree, and deer. max 300 each.
+     * 
+     * @return false if any of the params are more than 300.
      */
-    public void setDisplay()
+    private boolean populate(int grass, int trees, int deer)
     {
-        
-    }
-    
-     /**
-     * updates game display
-     */  
-    public void updateDisplay()
-    {
-    
+        //Check params
+        if (grass > 300 || trees > 300 || deer > 300) {
+            return false;
+        }
+        else {
+            //Add grass
+            int grassCount = grass;
+            while (grassCount > 0) {
+                int x = 0;
+                while (x == 0) {
+                    Zone randZone = this.getRandomZone();
+                    if (randZone.plantFull() != true) {
+                        Grass newGrass = new Grass(randZone);
+                        organisms.add(newGrass);
+                        newGrass.setReproCount(random.nextInt(3));
+                        x++;
+                    }
+                }
+                grassCount--;
+            }
+            //Add trees
+            int treeCount = trees;
+            while (treeCount > 0) {
+                int x = 0;
+                while (x == 0) {
+                    Zone randZone = this.getRandomZone();
+                    if (randZone.plantFull() != true) {
+                        Tree newTree = new Tree(randZone);
+                        organisms.add(newTree);
+                        newTree.setReproCount(random.nextInt(3));
+                        x++;
+                    }
+                }
+                treeCount--;
+            }
+            //Add Deer
+            int deerCount = deer;
+            while (deerCount > 0) {
+                Zone randZone = this.getRandomZone();
+                Deer newDeer = new Deer(randZone);
+                organisms.add(newDeer);
+                newDeer.setAge(random.nextInt(5));
+                deerCount--;
+            }
+            return true;
+        }
     }
 
     /**
@@ -177,6 +218,16 @@ public class Simulator
             }
         }
         
+    }
+    
+    /**
+     * Get a random Zone.
+     */
+    private Zone getRandomZone()
+    {
+        ArrayList<Zone> zones = gameGrid.getZones();
+        Zone randZone = zones.get(random.nextInt(144));
+        return randZone;
     }
     
     /**
