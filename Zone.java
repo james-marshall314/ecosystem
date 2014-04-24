@@ -125,17 +125,20 @@ public class Zone
         if (organism instanceof Grass) {
             if (plantTotal < 10) {
                 organisms.add(organism);
+                this.setLoc(organism);
                 addSuccessful = true;
             }
         }
         if (organism instanceof Tree) {
             if (plantTotal < 10) {
                 organisms.add(organism);
+                this.setLoc(organism);
                 addSuccessful = true;
             }
             else if (grassTotal > 0) {
                 this.killGrass();
                 organisms.add(organism);
+                this.setLoc(organism);
                 addSuccessful = true;
             }
         }
@@ -159,6 +162,7 @@ public class Zone
                 if (org instanceof Grass) {
                     itr.remove();
                     org.kill();
+                    this.clearLoc(org);
                     x++;
                 }
             }
@@ -168,12 +172,13 @@ public class Zone
     /**
      * Assign an organism a location within the zone. 
      */
-    private void setLocation(Organism org)
+    private void setLoc(Organism org)
     {
         if (org instanceof Tree || org instanceof Grass) {
             for (Location loc : locGrid)  {
                 if (loc.isFull() != true) {
                     loc.add(org);
+                    org.setLoc(loc);
                 }
             }
         }
@@ -190,6 +195,7 @@ public class Zone
                 }
             }
             tempLoc.add(org);
+            org.setLoc(tempLoc);
         }
     }
     
@@ -202,6 +208,7 @@ public class Zone
             for (Location loc : locGrid) {
                 if (loc.plant() == org) {
                     loc.clear(org);
+                    org.setLoc(null);
                 }
             }
         }
@@ -210,6 +217,7 @@ public class Zone
                 for (Deer deer : loc.deer()) {
                     if (deer == org) {
                         loc.clear(org);
+                        org.setLoc(null);
                     }
                 }
             }
