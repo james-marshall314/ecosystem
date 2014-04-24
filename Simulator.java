@@ -55,5 +55,13 @@ public class Simulator
         
     }
     
+    /**
+     * A turn for a grass element. 
+     */
+    private void grassTurn()
+    {
+        
+    }
+    
 
 }

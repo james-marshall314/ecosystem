@@ -2,8 +2,8 @@ import java.util.ArrayList;
 /**
  * Represent a location in a rectangular grid.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ * @author J. Marshall
+ * @version 0.0
  */
 public class Location
 {
@@ -85,5 +85,15 @@ public class Location
     public int getCoordY()
     {
         return y;
+    }
+    
+    public Organism plant() 
+    {
+        return plant;
+    }
+    
+    public ArrayList<Deer> deer()
+    {
+        return deer;
     }
 }

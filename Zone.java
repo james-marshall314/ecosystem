@@ -170,17 +170,66 @@ public class Zone
      */
     private void setLocation(Organism org)
     {
+        if (org instanceof Tree || org instanceof Grass) {
+            for (Location loc : locGrid)  {
+                if (loc.isFull() != true) {
+                    loc.add(org);
+                }
+            }
+        }
+        if (org instanceof Deer) {
+            Location tempLoc = null;
+            for (Location loc : locGrid) {
+                if (tempLoc == null) {
+                    tempLoc = loc;
+                }
+                else {
+                    if (loc.deer().size() < tempLoc.deer().size()) {
+                        tempLoc = loc;
+                    }
+                }
+            }
+            tempLoc.add(org);
+        }
     }
+    
+    /**
+     * Clear a location of a given organism. 
+     */
+    private void clearLoc(Organism org) 
+    {
+        if (org instanceof Tree || org instanceof Grass) {
+            for (Location loc : locGrid) {
+                if (loc.plant() == org) {
+                    loc.clear(org);
+                }
+            }
+        }
+        if (org instanceof Deer) {
+            for (Location loc : locGrid) {
+                for (Deer deer : loc.deer()) {
+                    if (deer == org) {
+                        loc.clear(org);
+                    }
+                }
+            }
+        }
+    }
+
     
     /**
      * Remove a given organism from the Zone.
      * 
      * @param an Organism object to be removed from the zone.
+     * 
+     * This should also clear the organisms location, it does not yet. 
      */
-    public void removeOrganism(Organism organism)
+    public void removeOrg(Organism org)
     {
-        organisms.remove(organism);
+        organisms.remove(org);
+        this.clearLoc(org);
         this.updateTotals();
+        
     }
     
     /**

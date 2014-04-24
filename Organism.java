@@ -45,7 +45,8 @@ public class Organism
      */
     public void kill()
     {
-        
+        isAlive = false;
+        myZone.removeOrg(this);
     }
     
     /**
@@ -69,5 +70,6 @@ public class Organism
      */
     public void clearOffspring()
     {
+        offspring.clear();
     }
 }
