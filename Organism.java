@@ -21,11 +21,14 @@ public class Organism
 
     /**
      * Constructor for objects of class Organism
+     * 
+     * sets Zone that is passed in and adds the org to that zone.
      */
     public Organism(Zone myZone)
     {
         isAlive = true;
         this.myZone = myZone;
+        myZone.addOrg(this);
         offspring = new ArrayList<Organism>();
     }
 

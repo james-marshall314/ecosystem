@@ -36,14 +36,14 @@ public class Simulator
     /**
      * Populate the Grid.
      * 
-     * @params ints representing number of grass, tree, and deer. max 300 each.
+     * @params ints representing number of grass, tree, and deer. Max 300 each, min 1.
      * 
-     * @return false if any of the params are more than 300.
+     * @return false if any of the params are more than 300 or less than 1.
      */
     public boolean populate(int grass, int trees, int deer)
     {
         //Check params
-        if (grass > 300 || trees > 300 || deer > 300) {
+        if (grass + trees > 1440) {
             return false;
         }
         else {
@@ -116,12 +116,14 @@ public class Simulator
             }
         }
         //Add all offspring created in this round.
+        ArrayList<Organism> newOrgs = new ArrayList<Organism>();
         for (Organism org : organisms) {
-            organisms.addAll(org.getOffspring());
+            newOrgs.addAll(org.getOffspring());
             org.clearOffspring();
         }
+        organisms.addAll(newOrgs);
         //fire turn
-        this.fireTurn();
+        //this.fireTurn();
         //Advance turns
         turns++;
     }
@@ -136,17 +138,19 @@ public class Simulator
             adjZones.add(grass.getZone());
             int count = adjZones.size();
             while(count > 0) {
-                Zone tempZone = adjZones.get(random.nextInt(count));
-                if (tempZone.plantFull() == false) {
-                    Grass newGrass = new Grass(tempZone);
-                    grass.addOffspring(newGrass);
-                    tempZone.addOrg(newGrass);
-                    grass.setReproCount(0);
-                    count = 0;
-                }
-                else {
-                    adjZones.remove(tempZone);
-                }
+                    Zone tempZone = adjZones.get(random.nextInt(count));
+                    if (tempZone.plantFull() == false) {
+                        Grass newGrass = new Grass(tempZone);
+                        grass.addOffspring(newGrass);
+                        tempZone.addOrg(newGrass);
+                        grass.setReproCount(0);
+                        count = 0;
+                    }
+                    else {
+                        adjZones.remove(tempZone);
+                        count = adjZones.size();
+                    }
+                
             }
         }
         else {
@@ -164,17 +168,19 @@ public class Simulator
             adjZones.add(tree.getZone());
             int count = adjZones.size();
             while(count > 0) {
-                Zone tempZone = adjZones.get(random.nextInt(count));
-                if (tempZone.treeFull() == false) {
-                    Tree newTree = new Tree(tempZone);
-                    tree.addOffspring(newTree);
-                    tempZone.addOrg(newTree);
-                    tree.setReproCount(0);
-                    count = 0;
-                }
-                else {
-                    adjZones.remove(tempZone);
-                }
+                    Zone tempZone = adjZones.get(random.nextInt(count));
+                    if (tempZone.treeFull() == false) {
+                        Tree newTree = new Tree(tempZone);
+                        tree.addOffspring(newTree);
+                        tempZone.addOrg(newTree);
+                        tree.setReproCount(0);
+                        count = 0;
+                    }
+                    else {
+                        adjZones.remove(tempZone);
+                        count = adjZones.size();
+                    }
+                
             }
         }
         else {
@@ -204,12 +210,11 @@ public class Simulator
             adjZones.add(zone);
             Zone tempZone = adjZones.get(0);
             for (Zone newZone : adjZones) {
-                if (tempZone.grassTotal() > newZone.grassTotal()) {
+                if (tempZone.grassTotal() < newZone.grassTotal()) {
                     tempZone = newZone;
                 }
             }
             if (tempZone.grassTotal() == 0) {
-                adjZones.remove(zone);
                 deer.move(adjZones.get(random.nextInt(adjZones.size())));
             }
             else {
@@ -272,10 +277,8 @@ public class Simulator
     private boolean isFire()
     {
         // % chance of a fire
-        int fireChance = 10;
-        //random number, 0 - 99
-        int rand = random.nextInt(100);
-        if (rand < fireChance) {
+        int fireChance = 2;
+        if (random.nextInt(100) < fireChance) {
             return true;
         }
         else {
@@ -291,11 +294,10 @@ public class Simulator
     private boolean didBurn(Organism org)
     {
         int burnChance;
-        int rand = random.nextInt(100);
         boolean didBurn = false;
         if (org instanceof Grass) {
             burnChance = 75;
-            if (rand < burnChance) {
+            if (random.nextInt(100) < burnChance) {
                 didBurn = true;
             }
             else {
@@ -304,7 +306,7 @@ public class Simulator
         }
         if (org instanceof Tree) {
             burnChance = 60;
-            if (rand < burnChance) {
+            if (random.nextInt(100) < burnChance) {
                 didBurn = true;
             }
             else {

@@ -164,6 +164,7 @@ public class Zone
                     org.kill();
                     this.clearLoc(org);
                     x++;
+                    break;
                 }
             }
         }
@@ -295,7 +296,7 @@ public class Zone
     
     public int grassTotal() 
     {
-        return grassTotal();
+        return grassTotal;
     }
 
 }
