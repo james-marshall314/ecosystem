@@ -40,7 +40,7 @@ public class Simulator
      * 
      * @return false if any of the params are more than 300.
      */
-    private boolean populate(int grass, int trees, int deer)
+    public boolean populate(int grass, int trees, int deer)
     {
         //Check params
         if (grass > 300 || trees > 300 || deer > 300) {
