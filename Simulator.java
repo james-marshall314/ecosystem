@@ -20,6 +20,7 @@ public class Simulator
     private GameGrid gameGrid;
     private ArrayList<Organism> organisms;
     private int turns;
+    private int fireChance;
     private static final Random random = new Random(666);
 
     /**
@@ -31,17 +32,22 @@ public class Simulator
         gameGrid = new GameGrid();
         organisms = new ArrayList<Organism>();
         turns = 0;
+        fireChance = 25;
     }
     
     /**
-     * Populate the Grid.
+     * Prepare the simulation:
+     * 
+     * Populate the grid and set the fireChance
      * 
      * @params ints representing number of grass, tree, and deer. Max 300 each, min 1.
      * 
      * @return false if any of the params are more than 300 or less than 1.
      */
-    public boolean populate(int grass, int trees, int deer)
+    public boolean prepSim(int grass, int trees, int deer, int fireChance)
     {
+        //set fireChance
+        this.fireChance = fireChance;
         //Check params
         if (grass + trees > 1440) {
             return false;
@@ -52,7 +58,7 @@ public class Simulator
             while (grassCount > 0) {
                 int x = 0;
                 while (x == 0) {
-                    Zone randZone = this.getRandomZone();
+                    Zone randZone = getRandomZone();
                     if (randZone.plantFull() != true) {
                         Grass newGrass = new Grass(randZone);
                         organisms.add(newGrass);
@@ -67,7 +73,7 @@ public class Simulator
             while (treeCount > 0) {
                 int x = 0;
                 while (x == 0) {
-                    Zone randZone = this.getRandomZone();
+                    Zone randZone = getRandomZone();
                     if (randZone.plantFull() != true) {
                         Tree newTree = new Tree(randZone);
                         organisms.add(newTree);
@@ -80,7 +86,7 @@ public class Simulator
             //Add Deer
             int deerCount = deer;
             while (deerCount > 0) {
-                Zone randZone = this.getRandomZone();
+                Zone randZone = getRandomZone();
                 Deer newDeer = new Deer(randZone);
                 organisms.add(newDeer);
                 newDeer.setAge(random.nextInt(5));
@@ -96,23 +102,23 @@ public class Simulator
     public void runSim()
     {
         //Clear out any dead organisms
-        this.clearDead();
+        clearDead();
         //All Grass take turn
         for (Organism org : organisms) {
             if (org instanceof Grass) {
-                this.grassTurn((Grass)org);
+                grassTurn((Grass)org);
             }
         }
         //All Tree take turn
         for (Organism org : organisms) {
             if (org instanceof Tree) {
-                this.treeTurn((Tree)org);
+                treeTurn((Tree)org);
             }
         }
         //All Deer take turn
         for (Organism org : organisms) {
             if (org instanceof Deer) {
-                this.deerTurn((Deer)org);
+                deerTurn((Deer)org);
             }
         }
         //Add all offspring created in this round.
@@ -123,9 +129,37 @@ public class Simulator
         }
         organisms.addAll(newOrgs);
         //fire turn
-        //this.fireTurn();
+        fireTurn();
         //Advance turns
         turns++;
+    }
+    
+    /**
+     * TEST METHOD
+     */
+    public void printZoneTotals()
+    {
+        ArrayList<Zone> zones = gameGrid.getZones();
+        for (Zone zone : zones) {
+            System.out.println(zone.getX()+","+zone.getY()+" | "+zone.grassTotal());
+        }
+    }
+    
+    /**
+     * TEST METHOD
+     * print adj zones.
+     */
+    public void printAdjZones()
+    {
+        ArrayList<Zone> zones = gameGrid.getZones();
+        for (Zone zone : zones) {
+            ArrayList<String> zoneCoords = new ArrayList<String>();
+            ArrayList<Zone> adjZones = gameGrid.getAdjZones(zone.getX(), zone.getY());
+            for (Zone adjZone : adjZones) {
+                zoneCoords.add(" [" + Integer.toString(adjZone.getX())+","+Integer.toString(adjZone.getY())+"]");
+            }
+            System.out.println(zone.getX() + "," + zone.getY() + " : " + adjZones.size() + " : " + zoneCoords);
+        }
     }
     
     /**
@@ -142,7 +176,6 @@ public class Simulator
                     if (tempZone.plantFull() == false) {
                         Grass newGrass = new Grass(tempZone);
                         grass.addOffspring(newGrass);
-                        tempZone.addOrg(newGrass);
                         grass.setReproCount(0);
                         count = 0;
                     }
@@ -172,7 +205,6 @@ public class Simulator
                     if (tempZone.treeFull() == false) {
                         Tree newTree = new Tree(tempZone);
                         tree.addOffspring(newTree);
-                        tempZone.addOrg(newTree);
                         tree.setReproCount(0);
                         count = 0;
                     }
@@ -223,7 +255,6 @@ public class Simulator
             if (deer.canRepro() == true) {
                 Deer newDeer = new Deer(zone);
                 deer.addOffspring(newDeer);
-                zone.addOrg(newDeer);
             }
         }
         
@@ -234,16 +265,17 @@ public class Simulator
      */
     private void fireTurn()
     {
-        this.setFire();
+        setFire();
         for (Organism org : organisms) {
-            if (org instanceof Tree || org instanceof Grass) {
-                if (this.didBurn(org) == true) {
-                    org.kill();
-                }
+            boolean burned = didBurn(org); 
+            boolean fire = org.getZone().getFireStatus();
+            if (fire == true && burned == true) {
+                org.kill();
             }
         }
-        this.fireOut();
+        fireOut();
     }
+     
     
     /**
      * Randomly set fire to zones. 
@@ -252,7 +284,8 @@ public class Simulator
     {
         ArrayList<Zone> zones = gameGrid.getZones();
         for (Zone zone : zones) {
-            if (this.isFire() == true) {
+            boolean fire = isFire();
+            if (fire == true) {
                 zone.setFireStatus(true);
             }
         }
@@ -277,7 +310,7 @@ public class Simulator
     private boolean isFire()
     {
         // % chance of a fire
-        int fireChance = 2;
+        int fireChance = this.fireChance;
         if (random.nextInt(100) < fireChance) {
             return true;
         }

@@ -57,21 +57,15 @@ public class GameGrid
     public ArrayList<Zone> getAdjZones(int x, int y)
     {
         ArrayList<Zone> neighbors = new ArrayList<Zone>();
-
-        int startX=getStartCoord(x);
-        int endX=getEndCoord(x);
-        int startY=getStartCoord(y);
-        int endY=getEndCoord(y);
         
-        for (int i=getStartCoord(x); i<getEndCoord(x); ++i)
+        for (int i=getStartCoord(x); i <= getEndCoord(x); ++i)
         {
-            for (int j=getStartCoord(y); j<getEndCoord(y); ++j)
+            for (int j=getStartCoord(y); j <= getEndCoord(y); ++j)
             {
-                if (i!=x || j!=y)
-                    neighbors.add(gameGrid.get (Integer.toString(i)+","+Integer.toString(j)));
+                neighbors.add(gameGrid.get (Integer.toString(i)+","+Integer.toString(j)));
             }
         }
-        
+        neighbors.remove(gameGrid.get(Integer.toString(x)+","+Integer.toString(y)));
         return neighbors;
     }
     
