@@ -93,7 +93,7 @@ public class Simulator
     /**
      * Runs through a single turn of the simulation. 
      */
-    private void runSim()
+    public void runSim()
     {
         //Clear out any dead organisms
         this.clearDead();
