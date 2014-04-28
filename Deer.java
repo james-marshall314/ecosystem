@@ -1,3 +1,7 @@
+import java.awt.Color;
+import java.awt.*;
+import java.awt.Shape;
+
 /**
  * A Deer Organism.
  * 
@@ -13,38 +17,12 @@ public class Deer extends Organism
     /**
      * Constructor for objects of class Deer
      */
-    public Deer(Zone myZone)
+    public Deer(Zone myZone, Location loc)
     {
-        super (myZone);
+        super (myZone, loc);
         health = 8;
         age = 0;
         reproAge = 4;
-    }
-    
-    /**
-     * Get the health level of this deer
-     * 
-     * @return an int representing the health of this deer
-     */
-    public int getHealth()
-    {
-        return health;
-    }
-    
-    /**
-     * Health + 1
-     */
-    public void healthPlus()
-    {
-        health++;
-    }
-    
-    /**
-     * Health 1 1
-     */
-    public void healthMinus()
-    {
-        health--;
     }
     
     /**
@@ -53,14 +31,6 @@ public class Deer extends Organism
     public void setAge(int age)
     {
         this.age = age;
-    }
-    
-    /**
-     * Age +1
-     */
-    public void agePlus()
-    {
-        age++;
     }
     
     /**
@@ -81,14 +51,16 @@ public class Deer extends Organism
     /**
      * Deer moves
      * 
-     * @param a new zone to move to.
+     * @return  new Zone
      */
-    public void move(Zone newZone)
+    public void setZone(Zone newZone)
 
     {
-        myZone.removeOrg(this);
-        newZone.addOrg(this);
         myZone=newZone;
-        
+    }
+    
+    private void setShape(Location loc)
+    {
+        super.myShape=new Rectangle(6,10,loc.x,loc.y+2);
     }
 }
