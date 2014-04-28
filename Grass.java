@@ -1,4 +1,6 @@
-
+import java.awt.Color;
+import java.awt.*;
+import java.awt.Shape;
 /**
  * A Grass Organism.
  * 
@@ -15,9 +17,9 @@ public class Grass extends Organism
     /**
      * Constructor for objects of class Grass
      */
-    public Grass(Zone myZone)
+    public Grass(Zone myZone, Location loc)
     {
-       super (myZone);
+       super (myZone, loc);
        reproRate = 2;
        reproCount = 0;
        burnChance = 75;
@@ -31,26 +33,9 @@ public class Grass extends Organism
         this.reproCount = reproCount;
     }
     
-    /**
-     * Advance the repro count by 1
-     */
-    public void advCount()
+    private void setShape(Location loc)
     {
-        reproCount++;
-    }
-
-    
-    /**
-     * check if grass can reproduce. 
-     */
-    public boolean canRepro()
-    {
-        if (reproCount >= reproRate) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        super.myShape=new Rectangle(10,10,loc.x,loc.y);
     }
     
 }
